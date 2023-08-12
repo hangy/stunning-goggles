@@ -1,7 +1,7 @@
 {
 	"name": "Perl (Community)",
 	"build": {
-		"dockerfile": "Dockerfile",
+		"dockerfile": "../Dockerfile",
 		// Update VARIANT to pick a Perl version
 		"args": { "VARIANT": "5" }
 	},
@@ -14,7 +14,8 @@
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"mortenhenriksen.perl-debug",
-				"d9705996.perl-toolbox"
+				"d9705996.perl-toolbox",
+				"richterger.perl"
 			]
 		}
 	},
