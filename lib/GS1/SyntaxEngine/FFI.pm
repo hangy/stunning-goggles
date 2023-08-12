@@ -5,11 +5,15 @@ package GS1::SyntaxEngine::FFI;
 use utf8;
 
 use Moo;
+
 use strictures 2;
 use namespace::clean;
 
 use FFI::Platypus 2.00;
 use FFI::CheckLib 0.06;
+
+use GS1::SyntaxEngine::FFI::InitException;
+use GS1::SyntaxEngine::FFI::EncoderParameterException;
 
 my $opaque_types = [map {"gs1_$_"} qw/encoder/];
 
@@ -74,10 +78,16 @@ has _encoder => (
   is => 'rw',
 );
 
+sub _throw_error_exception {
+  my ($self) = @_;
+  GS1::SyntaxEngine::FFI::EncoderParameterException->throw({ message => $self->error_msg });
+  return;
+}
+
 sub ai_data_str {
   my ($self, $value) = @_;
   if (@_ == 2) {
-    return _setAIdataStr($self->_encoder, $value);
+    _setAIdataStr($self->_encoder, $value) or _throw_error_exception();
   }
 
   return _getAIdataStr($self->_encoder);
@@ -86,7 +96,7 @@ sub ai_data_str {
 sub data_str {
   my ($self, $value) = @_;
   if (@_ == 2) {
-    return _setDataStr($self->_encoder, $value);
+    _setDataStr($self->_encoder, $value) or _throw_error_exception();
   }
 
   return _getDataStr($self->_encoder);
@@ -95,7 +105,7 @@ sub data_str {
 sub scan_data {
   my ($self, $value) = @_;
   if (@_ == 2) {
-    return _setScanData($self->_encoder, $value);
+    _setScanData($self->_encoder, $value) or _throw_error_exception();
   }
 
   return _getScanData($self->_encoder);
@@ -109,7 +119,7 @@ sub error_msg {
 sub add_check_digit {
   my ($self, $value) = @_;
   if (@_ == 2) {
-    return _setAddCheckDigit($self->_encoder, $value);
+    _setAddCheckDigit($self->_encoder, $value) or _throw_error_exception();
   }
 
   return _getAddCheckDigit($self->_encoder);
@@ -118,7 +128,7 @@ sub add_check_digit {
 sub permit_unknown_ais {
   my ($self, $value) = @_;
   if (@_ == 2) {
-    return _setPermitUnknownAIs($self->_encoder, $value);
+    _setPermitUnknownAIs($self->_encoder, $value) or _throw_error_exception();
   }
 
   return _getPermitUnknownAIs($self->_encoder);
@@ -127,7 +137,7 @@ sub permit_unknown_ais {
 sub permit_zero_suppressed_gtin_in_dl_uris{
   my ($self, $value) = @_;
   if (@_ == 2) {
-    return _setPermitZeroSuppressedGTINinDLuris($self->_encoder, $value);
+    _setPermitZeroSuppressedGTINinDLuris($self->_encoder, $value) or _throw_error_exception();
   }
 
   return _getPermitZeroSuppressedGTINinDLuris($self->_encoder);
@@ -136,7 +146,7 @@ sub permit_zero_suppressed_gtin_in_dl_uris{
 sub include_data_titles_in_hri {
   my ($self, $value) = @_;
   if (@_ == 2) {
-    return _setIncludeDataTitlesInHRI($self->_encoder, $value);
+    _setIncludeDataTitlesInHRI($self->_encoder, $value) or _throw_error_exception();
   }
 
   return _getIncludeDataTitlesInHRI($self->_encoder);
@@ -145,7 +155,7 @@ sub include_data_titles_in_hri {
 sub validate_ai_associations {
   my ($self, $value) = @_;
   if (@_ == 2) {
-    return _setValidateAIassociations($self->_encoder, $value);
+    _setValidateAIassociations($self->_encoder, $value) or _throw_error_exception();
   }
 
   return _getValidateAIassociations($self->_encoder);
@@ -163,7 +173,12 @@ sub dl_uri {
 
 sub BUILD {
   my ($self, $args) = @_;
-  $self->_encoder(_init());
+  my $encoder = _init();
+  if (!$encoder) {
+    GS1::SyntaxEngine::FFI::InitException->throw();
+  }
+
+  $self->_encoder($encoder);
   return $self;
 }
 

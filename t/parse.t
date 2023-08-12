@@ -12,8 +12,7 @@ use GS1::SyntaxEngine::FFI;
 my $encoder = GS1::SyntaxEngine::FFI->new();
 
 my $barcode = '^01070356200521631523080710230710';
-my $value_was_set = $encoder->data_str($barcode);
-is($value_was_set, 1, 'Data string not set: ' . $encoder->error_msg($encoder));
+$encoder->data_str($barcode);
 
 my $result = $encoder->data_str;
 is($result, $barcode);
