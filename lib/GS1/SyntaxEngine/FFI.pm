@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-1.0-or-later OR Artistic-1.0-Perl
+
 # ABSTRACT: Provides a FFI wrapper for libgs1encoders
 
 package GS1::SyntaxEngine::FFI;
