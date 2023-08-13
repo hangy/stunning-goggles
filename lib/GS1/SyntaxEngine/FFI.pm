@@ -134,7 +134,7 @@ sub permit_unknown_ais {
   return _getPermitUnknownAIs($self->_encoder);
 }
 
-sub permit_zero_suppressed_gtin_in_dl_uris{
+sub permit_zero_suppressed_gtin_in_dl_uris {
   my ($self, $value) = @_;
   if (@_ == 2) {
     _setPermitZeroSuppressedGTINinDLuris($self->_encoder, $value) or _throw_error_exception();
