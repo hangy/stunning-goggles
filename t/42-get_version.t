@@ -9,9 +9,9 @@ use warnings;
 
 use Test2::V0;
 
-use GS1::SyntaxEngine::FFI;
+use GS1::SyntaxEngine::FFI::GS1Encoder;
 
-my $encoder = GS1::SyntaxEngine::FFI->new();
+my $encoder = GS1::SyntaxEngine::FFI::GS1Encoder->new();
 my $version = $encoder->version;
 
 like($version, qr/20\d{2}$/sxm, 'Version matches');

@@ -2,7 +2,7 @@
 
 # ABSTRACT: Provides a FFI wrapper for libgs1encoders
 
-package GS1::SyntaxEngine::FFI;
+package GS1::SyntaxEngine::FFI::GS1Encoder;
 
 use utf8;
 
