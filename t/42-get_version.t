@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-1.0-or-later OR Artistic-1.0-Perl
+
 use utf8;
 
 use 5.010_000;
