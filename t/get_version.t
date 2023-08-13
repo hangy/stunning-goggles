@@ -12,7 +12,7 @@ use GS1::SyntaxEngine::FFI;
 my $encoder = GS1::SyntaxEngine::FFI->new();
 my $version = $encoder->version;
 
-is($version, 'Aug 12 2023', 'Version matches');
+like($version, qr/20\d{2}$/sxm, 'Version matches');
 
 done_testing;
 
