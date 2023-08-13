@@ -42,12 +42,6 @@ my $functions = [
   [getDLuri => ['gs1_encoder','string'] => 'string'],
   [getScanData => ['gs1_encoder'] => 'string'],
   [setScanData => ['gs1_encoder', 'string'] => 'bool'],
-  #[getHRI => ['gs1_encoder','char***'] => 'string'],
-  #[getHRIsize => ['void'] => 'size_t'],
-  #[copyHRI => ['gs1_encoder','void*','size_t'] => 'void'],
-  #[getDLignoredQueryParams => ['gs1_encoder','char***'] => 'int'],
-  #[getDLignoredQueryParamsSize => ['gs1_encoder'] => 'size_t'],
-  #[copyDLignoredQueryParams => ['gs1_encoder','void*','size_t'] => 'void'],
   [free => ['gs1_encoder'] => 'void']
 ];
 
