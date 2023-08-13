@@ -13,9 +13,12 @@ use GS1::SyntaxEngine::FFI::GS1Encoder;
 
 {
     my $encoder = GS1::SyntaxEngine::FFI::GS1Encoder->new();
-    my $version = $encoder->version;
 
-    like($version, qr/20\d{2}$/sxm, 'Version matches');
+    my $barcode = '^01070356200521631523080710230710';
+    $encoder->data_str($barcode);
+
+    my $result = $encoder->data_str;
+    is($result, $barcode, 'Data string should equal given value');
 }
 
 done_testing;
