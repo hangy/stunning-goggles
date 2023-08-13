@@ -167,8 +167,8 @@ sub version {
 }
 
 sub dl_uri {
-  my ($self) = @_;
-  return _getDLuri($self->_encoder);
+  my ($self, $domain) = @_;
+  return _getDLuri($self->_encoder, $domain);
 }
 
 sub BUILD {

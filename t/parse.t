@@ -20,6 +20,9 @@ is($result, $barcode);
 my $ai = $encoder->ai_data_str();
 is('(01)07035620052163(15)230807(10)230710', $ai, 'AI string not as expected');
 
+my $url = $encoder->dl_uri('https://id.example.com/stem');
+like($url, qr/^https:\/\/id.example.com\/stem\/01\/07035620052163\/.*$/smx);
+
 done_testing;
 
 1;
