@@ -30,10 +30,5 @@ RUN cpanm Perl::LanguageServer --notest --quiet --skip-satisfied
 COPY dist.ini /tmp/
 RUN dzil authordeps --root /tmp | cpanm --notest --quiet --skip-satisfied
 
-RUN wget https://github.com/gs1/gs1-syntax-engine/archive/refs/tags/2023-07-05.tar.gz -P /tmp \
-    && tar xfz /tmp/2023-07-05.tar.gz -C /tmp/ \
-    && cd /tmp/gs1-syntax-engine-2023-07-05/src/c-lib \
-    && make && make install
-
 # Cleanup
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts /tmp/dist.ini /tmp/2023-07-05.tar.gz /tmp/gs1-syntax-engine-2023-07-05

@@ -11,8 +11,9 @@ use Moo;
 use strictures 2;
 use namespace::clean;
 
-use FFI::Platypus 2.00;
-use FFI::CheckLib 0.06;
+use FFI::Platypus 2.08;
+
+use Alien::libgs1encoders 0.02;
 
 use GS1::SyntaxEngine::FFI::InitException;
 use GS1::SyntaxEngine::FFI::EncoderParameterException;
@@ -45,8 +46,7 @@ my $functions = [
   [free => ['gs1_encoder'] => 'void']
 ];
 
-my $ffi = FFI::Platypus->new( api => 2 );
-$ffi->find_lib( lib => 'gs1encoders' );
+my $ffi = FFI::Platypus->new( lib => [ Alien::libgs1encoders->dynamic_libs ] );
 
 for my $type (@{ $opaque_types }) {
   $ffi->custom_type($type => {
