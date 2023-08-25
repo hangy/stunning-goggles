@@ -2,8 +2,6 @@
 
 package GS1::SyntaxEngine::FFI::GS1Encoder;
 
-# ABSTRACT: Provides a FFI wrapper for libgs1encoders
-
 use utf8;
 
 use strictures 2;
