@@ -9,6 +9,6 @@ use utf8;
 use Moose;
 with 'Throwable';
 
-has message => (is => 'ro');
+has message => ( is => 'ro' );
 
 1;

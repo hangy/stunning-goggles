@@ -18,7 +18,8 @@ use GS1::SyntaxEngine::FFI::GS1Encoder;
     $encoder->data_str($barcode);
 
     my $result = $encoder->ai_data_str();
-    is('(01)07035620052163(15)230807(10)230710', $result, 'AI string not as expected');
+    is( '(01)07035620052163(15)230807(10)230710',
+        $result, 'AI string not as expected' );
 }
 
 done_testing;

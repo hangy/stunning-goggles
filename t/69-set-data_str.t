@@ -18,7 +18,7 @@ use GS1::SyntaxEngine::FFI::GS1Encoder;
     $encoder->data_str($barcode);
 
     my $result = $encoder->data_str;
-    is($result, $barcode, 'Data string should equal given value');
+    is( $result, $barcode, 'Data string should equal given value' );
 }
 
 done_testing;

@@ -15,7 +15,7 @@ use GS1::SyntaxEngine::FFI::GS1Encoder;
     my $encoder = GS1::SyntaxEngine::FFI::GS1Encoder->new();
     my $version = $encoder->version;
 
-    like($version, qr/20\d{2}$/sxm, 'Version matches');
+    like( $version, qr/20\d{2}$/sxm, 'Version matches' );
 }
 
 done_testing;

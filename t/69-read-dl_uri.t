@@ -18,7 +18,8 @@ use GS1::SyntaxEngine::FFI::GS1Encoder;
     $encoder->data_str($barcode);
 
     my $result = $encoder->dl_uri('https://id.example.com/stem');
-    like($result, qr/^https:\/\/id.example.com\/stem\/01\/07035620052163\/.*$/smx);
+    like( $result,
+        qr/^https:\/\/id.example.com\/stem\/01\/07035620052163\/.*$/smx );
 }
 
 done_testing;
