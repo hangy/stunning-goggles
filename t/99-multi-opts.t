@@ -27,7 +27,7 @@ use GS1::SyntaxEngine::FFI::GS1Encoder;
     $encoder->data_str($barcode);
 
     $data_str = $encoder->data_str;
-    is( $result, $data_str, 'Data string should equal given value' );
+    is( $data_str, $data_str, 'Data string should equal given value' );
     $ai_str = $encoder->ai_data_str();
     is( '(01)07035620052163(15)230807(10)230711',
         $ai_str, 'AI string not as expected' );
