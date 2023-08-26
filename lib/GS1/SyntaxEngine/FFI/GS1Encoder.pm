@@ -12,6 +12,9 @@ use FFI::Platypus::Memory ();
 
 use Alien::libgs1encoders 0.03;
 
+use GS1::SyntaxEngine::FFI::EncoderParameterException;
+use GS1::SyntaxEngine::FFI::InitException;
+
 my $ffi = FFI::Platypus->new(
     api => 2,
     lib => [ Alien::libgs1encoders->dynamic_libs ]
@@ -53,6 +56,10 @@ sub new {
     my $size    = _instanceSize();
     my $self    = bless \FFI::Platypus::Memory::malloc($size), $class;
     my $r       = _init( ${$self} );
+    if ( !$r ) {
+        GS1::SyntaxEngine::FFI::InitException->throw();
+    }
+
     return $self;
 }
 

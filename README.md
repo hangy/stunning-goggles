@@ -4,7 +4,7 @@ GS1::SyntaxEngine::FFI - Provides a FFI wrapper for libgs1encoders
 
 # VERSION
 
-version 0.2
+version 0.3
 
 # SYNOPSIS
 
